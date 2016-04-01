@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/firebase/firebase.js"></script>
+    <script src="/bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="/javascripts/main.js"></script>
+  </head>
+  
+  <body ng-app='fireApp' ng-controller='mainCtrl'>
+  	<center>
+    	<h1 id="chatter">chatter<i class="fa fa-comment"></i></h1>
+			<p>the buzz is here.</p>
+		<br>
+		<br>
+		<div ng-hide='authData'>
+			register/login
+			<div>
+				<input type="text" ng-model='newUser.email' placeholder="email">
+				<br>
+				<input type="password" ng-model='newUser.password' placeholder="password">
+				<br>
+				<button class='btn btn-default authbtn' ng-click='register(newUser)'>register</button>
+				<button class='btn btn-default authbtn' ng-click='login(newUser)'>login</button>
+			</div>
+		</div>
+		 </center>
+
+
+		<div class='container' ng-show='authData'>
+			<div class='row'>
+			<center>
+				<button class='btn btn-default authbtn' ng-click='logout()'>logout</button>
+			</center>
+			<h1>update your profile</h1>
+				<input type="text" placeholder="username" ng-model='profile.name' ng-change='profile.$save()'>
+				<br>
+				chat color: <input type="color" ng-model='profile.color' ng-change='profile.$save()'>
+				<br>
+				<br>
+				<button class='btn btn-default authbtn' ng-click='profile.$save()'>save</button>
+			</div>
+			<br>
+			<br>
+			<div class='row' id='chat'>
+				<ul id="messages">
+					
+				</ul>
+			</div>
+			<input type="text" id="message-input" placeholder="send a message"><button class='btn btn-default authbtn' ng-click='send()'>send</button>
+		</div>
+  </body>
+</html>
