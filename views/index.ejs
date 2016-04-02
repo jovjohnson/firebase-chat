@@ -39,7 +39,19 @@
 			<center>
 				<button class='btn btn-default authbtn' ng-click='logout()'>logout</button>
 			</center>
-			<h1>update your profile</h1>
+			
+			<br>
+			<div class='row' id='chat'>
+				<ul id="chats">
+					<li ng-repeat='msg in messages'><span>{{msg.time | date : 'short'}}</span> - <span>{{msg.msg}}</span></li>
+				</ul>
+			</div>
+			<input type="text" ng-model='post.msg' id="message-input" placeholder="send a message">
+			<button class='btn btn-default authbtn' ng-click='send(post)'>send</button>
+		</div>
+
+		<h1>update your profile</h1>
+				<img ng-src="{{authData.password.profileImageURL}}">
 				<input type="text" placeholder="username" ng-model='profile.name' ng-change='profile.$save()'>
 				<br>
 				chat color: <input type="color" ng-model='profile.color' ng-change='profile.$save()'>
@@ -48,13 +60,11 @@
 				<button class='btn btn-default authbtn' ng-click='profile.$save()'>save</button>
 			</div>
 			<br>
-			<br>
-			<div class='row' id='chat'>
-				<ul id="messages">
-					
-				</ul>
-			</div>
-			<input type="text" id="message-input" placeholder="send a message"><button class='btn btn-default authbtn' ng-click='send()'>send</button>
-		</div>
+
+
+
+
+
+
   </body>
 </html>
